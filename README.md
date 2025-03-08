@@ -9,3 +9,9 @@ To compile your programs:
 To execute:
 - in the terminal:
      `./nom_de_l_executable`
+
+----
+
+week-1
+- zune.c
+- 

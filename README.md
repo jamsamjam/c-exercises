@@ -14,4 +14,5 @@ To execute:
 
 week-1
 - zune.c
+- write.c
 - 

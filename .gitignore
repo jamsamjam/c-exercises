@@ -1,0 +1,14 @@
+.DS_Store
+
+*.o
+*.out
+*.exe
+
+*.dylib
+*.bin
+*.elf
+
+bin/
+build/
+dist/
+obj/

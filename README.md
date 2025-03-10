@@ -1,18 +1,21 @@
-To compile your programs:
-- in the terminal:
-`gcc -o nom_de_l_executable code_source.c`
+# C Exercises
 
-- for a more rigorous version, following a standard:
-     `gcc -ansi -Wall -pedantic -o executable code_source.c`
-     `gcc -std=c17 -Wall -pedantic -o executable code_source.c`
+This repository contains C programming exercises from the CS-202 course.
 
-To execute:
-- in the terminal:
-     `./nom_de_l_executable`
+## How to Compile
 
-----
+```sh
+gcc -o out/name name.c
+```
 
-week-1
-- zune.c
-- write.c
-- 
+For a stricter standard-compliant compilation:
+```sh
+gcc -ansi -Wall -pedantic -o out/name name.c
+gcc -std=c17 -Wall -pedantic -o out/name name.c
+```
+
+## How to Run
+
+```sh
+out/name
+```

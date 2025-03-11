@@ -28,11 +28,11 @@ int main(void)
             while (getchar() != '\n');
             continue;
         }
+        getchar();
 
         fprintf(fp, "%s %d\n", name, age);
     }
 
-    fputc('\n', fp);
     fclose(fp);
 
     return 0;

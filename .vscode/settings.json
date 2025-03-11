@@ -1,5 +1,14 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "__bit_reference": "c",
+        "__split_buffer": "c",
+        "string": "c",
+        "vector": "c",
+        "queue": "c",
+        "stack": "c",
+        "unistd.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c"
     }
 }

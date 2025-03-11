@@ -58,20 +58,22 @@ void link_neighbors2(Node *n1, Node *n2)
 }
 */
 
-void link_neighbors(Node *n1, Node *n2)
+int link_neighbors(Node *n1, Node *n2)
 {
-    if (n1 == NULL || n2 == NULL) return;
+    if (n1 == NULL || n2 == NULL) return 0;
 
     const Node **new_neighbors1 = realloc(n1->neighbors, (n1->nb_neighbors + 1) * sizeof(Node *));
     const Node **new_neighbors2 = realloc(n2->neighbors, (n2->nb_neighbors + 1) * sizeof(Node *));
     
-    if (new_neighbors1 == NULL || new_neighbors2 == NULL) return;
+    if (new_neighbors1 == NULL || new_neighbors2 == NULL) return 0;
 
     n1->neighbors = new_neighbors1;
     n2->neighbors = new_neighbors2;
 
     n1->neighbors[n1->nb_neighbors++] = n2;
     n2->neighbors[n2->nb_neighbors++] = n1;
+    
+    return 1;
 }
 
 size_t common_neighbors(Node *n1, Node *n2)

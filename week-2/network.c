@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef SIZE_MAX
+#define SIZE_MAX (-(size_t)0)
+#endif
+
 typedef unsigned char IP_addr[4];
 
 typedef struct node {
@@ -25,24 +29,56 @@ Node *create(unsigned char a1, unsigned char a2, unsigned char a3, unsigned char
     return n;
 }
 
+/*
+int link_neighbor(Node *n1, Node *n2)
+{
+    if (n1 != NULL) {
+        if (n2 == NULL) return 1;
+    
+        ++(n1->nb_neighbors);
+        Node const** const old_content = n1->neighbors;
+
+        if ((n1->nb_neighbors > SIZE_MAX / sizeof(Node *)) ||
+            ((n1->neighbors = realloc(n1->neighbors, n1->nb_neighbors * sizeof(Node *))) == NULL)) {
+            n1->neighbors = old_content;
+            --(n1->nb_neighbors);
+            return 2;
+        }
+        n1->neighbors[n1->nb_neighbors - 1] = n2;
+        return 0;
+    }
+    return 3;
+}
+
+void link_neighbors2(Node *n1, Node *n2)
+{
+    if (link_neighbor(n1, n2) == 0) {
+        link_neighbor(n2, n1);
+    }
+}
+*/
+
 void link_neighbors(Node *n1, Node *n2)
 {
     if (n1 == NULL || n2 == NULL) return;
 
-    n1->neighbors = realloc(n1->neighbors, (n1->nb_neighbors + 1) * sizeof(Node *));
-    n2->neighbors = realloc(n2->neighbors, (n2->nb_neighbors + 1) * sizeof(Node *));
+    const Node **new_neighbors1 = realloc(n1->neighbors, (n1->nb_neighbors + 1) * sizeof(Node *));
+    const Node **new_neighbors2 = realloc(n2->neighbors, (n2->nb_neighbors + 1) * sizeof(Node *));
     
-    if (n1->neighbors == NULL || n2->neighbors == NULL) return;
+    if (new_neighbors1 == NULL || new_neighbors2 == NULL) return;
+
+    n1->neighbors = new_neighbors1;
+    n2->neighbors = new_neighbors2;
 
     n1->neighbors[n1->nb_neighbors++] = n2;
     n2->neighbors[n2->nb_neighbors++] = n1;
 }
 
-unsigned int common_neighbors(Node *n1, Node *n2)
+size_t common_neighbors(Node *n1, Node *n2)
 {
     if (n1 == NULL || n2 == NULL) return 0;
 
-    unsigned int count = 0;
+    size_t count = 0;
 
     for (int i = 0; i < n1->nb_neighbors; i++) {
         for (int j = 0; j < n2->nb_neighbors; j++) {
